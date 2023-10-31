@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Hello, Icreditworks'
+                echo 'Hello, Icreditworks NJ'
             }
         }
     }
