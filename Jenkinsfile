@@ -17,7 +17,7 @@ pipeline {
         success {
             script {
                 def commitSHA = 'YOUR_SHA'  // You'd typically fetch this dynamically
-                def response = httpRequest url: 'https://app.sleuth.io/api/1/deployments/testtoken/tuesday/register_deploy',
+                def response = httpRequest url: 'https://app.sleuth.io/api/1/deployments/testtoken/tuesday-2/register_deploy',
                                            httpMode: 'POST',
                                            contentType: 'APPLICATION_JSON',
                                            headers: [
