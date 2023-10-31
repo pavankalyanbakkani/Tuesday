@@ -9,12 +9,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Hello, World! it's a Tuesday'
-            
             }
         }
     }
     
-     post {
+    post {
         success {
             script {
                 def commitSHA = 'YOUR_SHA'  // You'd typically fetch this dynamically
@@ -24,7 +23,7 @@ pipeline {
                                            headers: [
                                                 [name: 'Authorization', value: 'Bearer YOUR_ACTUAL_ORG_REGISTER_DEPLOY_ACCESS_TOKEN']
                                            ],
-                                           validResponseCodes: '100:599',
+                                           validResponseCodes: '200:299',  // Recommended to narrow down the acceptable response codes
                                            requestBody: "{\"environment\": \"production\", \"sha\": \"${commitSHA}\"}"
 
                 echo "Response from Sleuth: ${response}"
