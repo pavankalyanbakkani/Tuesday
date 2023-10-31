@@ -10,12 +10,14 @@ pipeline {
             steps {
                 echo 'Pavan kalyan bakkani'
                 echo 'Bridgewater, Newjersey'
+                 sh 'exit 1'
             }
         }
         stage('Descr') {
             steps {
                 echo 'Hyuderabad'
                 echo 'Suncityy'
+               
             }
         }
     }
@@ -34,6 +36,11 @@ pipeline {
                     echo "Response from Sleuth: Status: ${response}"
                 }
             }
+       
+         }
+        failure { // This post condition will run if any of the stages fail
+            echo 'The build has failed!'
+            // You can add more steps or calls here to record the failure in other tools or send notifications.
         }
     }
 }
