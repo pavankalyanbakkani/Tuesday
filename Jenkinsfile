@@ -16,23 +16,17 @@ pipeline {
    post {
     success {
         script {
-            def commitSHA = 'YOUR_SHA'  // Fetch this dynamically
-            def authToken = 'Bearer YOUR_ACTUAL_ORG_REGISTER_DEPLOY_ACCESS_TOKEN' // Adjust the prefix (Bearer/Token) as required
+            def commitSHA = 'YOUR_SHA'  // You'd typically fetch this dynamically
+                def response = httpRequest url: 'https://app.sleuth.io/api/1/deployments/testtoken/tuesday-3/register_deploy',
+                                           httpMode: 'POST',
+                                           contentType: 'APPLICATION_JSON',
+                                           headers: [
+                                                [name: 'Authorization', value: 'Bearer YOUR_ACTUAL_ORG_REGISTER_DEPLOY_ACCESS_TOKEN']
+                                           ],
+                                           validResponseCodes: '100:599',
+                                           requestBody: "{\"environment\": \"production\", \"sha\": \"${commitSHA}\"}"
 
-            // Using curl as an alternative to httpRequest
-            def response = sh(script: """
-                curl -s -o /dev/null -w "%{http_code}" \\
-                -X POST \\
-                -H "Content-Type: application/json" \\
-                -H "Authorization: ${authToken}" \\
-                -d '{"environment": "production", "sha": "${commitSHA}"}' \\
-                https://app.sleuth.io/api/1/deployments/testtoken/tuesday-2/register_deploy
-            """, returnStdout: true).trim()
-
-            echo "Response code from Sleuth: ${response}"
-
-            if (response != '200') {
-                error("Failed to register deployment with Sleuth!")
+                echo "Response from Sleuth: ${response}"
             }
         }
     }
