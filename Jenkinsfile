@@ -13,7 +13,7 @@ pipeline {
         }
     }
 
-    pos {
+    post {
         success {
             script {
                 withCredentials([string(credentialsId: 'sleuth', variable: 'SLEUTH_API_KEY')]) {
