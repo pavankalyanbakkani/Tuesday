@@ -8,7 +8,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Hello, Icreditworks inc NJ'
+                echo 'Pavan kalyan bakkani'
+                echo 'Bridgewater, Newjersey'
+            }
+        }
+        stage('Descr') {
+            steps {
+                echo 'Hyuderabad'
+                echo 'Suncity'
             }
         }
     }
