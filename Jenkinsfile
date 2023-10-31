@@ -10,7 +10,7 @@ pipeline {
             steps {
                 echo 'Pavan kalyan bakkani'
                 echo 'Bridgewater, Newjersey'
-                 sh 'exit 1'
+                
             }
         }
         stage('Descr') {
